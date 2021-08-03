@@ -29,7 +29,7 @@ def generate_population(pouplations = 100):
 def crossover(a,b):
 	c = []
 	for gene_a,gene_b in zip(a,b):
-		if random.random() > 0.80:
+		if random.random() > 0.50:
 			c.append(gene_a)
 		else:	
 			c.append(gene_b)
