@@ -41,11 +41,11 @@ def generate_population(pouplations = 100):
 def crossover(a,b):
 	c = []
 	for gene_a,gene_b in zip(a,b):
-		if random.random() > 0.50:
+		if random.random() > 0.80:
 			c.append(gene_a)
 		else:	
 			c.append(gene_b)
-	if random.random() > 0.80:
+	if random.random() < 0.10:
 		c[random.choice(list(range(len(a))))] = get_chromosome()
 	return c
 	
@@ -66,7 +66,7 @@ def genetic_algorithm(pouplations = 1000,epochs = 1000):
 		for index in range(x):
 			new_population.append(population.pop(0))
 		for index in range(y):
-			a = random.choice(population)
+			a = random.choice(new_population)
 			b = random.choice(population)
 			if random.random() < 0.05:
 				c = get_individual()
