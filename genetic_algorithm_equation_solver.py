@@ -15,24 +15,35 @@ def func(individual):
 	result = result + 4 * individual[3]
 	return result
 '''
+'''
 ## bounds : -50 to 50
 ## f(x) = 25 * x ^ 2 - 20 * x + 1 * c
 ## g(x) = abs(f(x))
 def func(individual):
-	a,b,c = 25,-20,1
+	a,b,c = 4,6,8
 	result = 0
 	result = result + a * individual[0] ** 2
 	result = result + b * individual[1]
 	result = result + c * individual[2]
 	return result
+'''	
+def func(individual):
+	result = 0
+	for value in individual:
+		result = result + value
+	return result
 
 def fitness(individual):
-	return abs(func(individual))
+	target = 30
+	return abs(target - func(individual))
 	
-def get_chromosome(a = -50,b = 50):
+def get_chromosome(a = -30,b = 30):
 	return random.choice(range(a,b + 1))
 
-def get_individual(n = 3):
+def	str_chromosome(individual):
+	return individual
+
+def get_individual(n = 30):
 	return [get_chromosome() for index in range(n)]
 
 def generate_population(pouplations = 100):
@@ -41,7 +52,7 @@ def generate_population(pouplations = 100):
 def crossover(a,b):
 	c = []
 	for gene_a,gene_b in zip(a,b):
-		if random.random() > 0.80:
+		if random.random() > 0.50:
 			c.append(gene_a)
 		else:	
 			c.append(gene_b)
@@ -56,7 +67,7 @@ def genetic_algorithm(pouplations = 1000,epochs = 1000):
 	while epoch <= epochs:
 		population = sorted(population,key = lambda x : fitness(x))
 		print("epoch : {} {} func : {} fitness: {}".format(epoch,
-			population[0],func(population[0]),fitness(population[0])))
+			str_chromosome(population[0]),func(population[0]),fitness(population[0])))
 		if fitness(population[0]) == 0:
 			found = True
 			break
@@ -79,9 +90,14 @@ def genetic_algorithm(pouplations = 1000,epochs = 1000):
 	return population[0] if found else []
 
 def main():
-	solution = genetic_algorithm(pouplations = 1000,epochs = 10000)
-	print(solution)
+	solution = genetic_algorithm(pouplations = 1000,epochs = 1000 * 10)
+	print()
+	print("Solution: {}".format(str_chromosome(solution)))
+	print()
 
+	
+if __name__ == "__main__":
+	main()
 	
 if __name__ == "__main__":
 	main()
