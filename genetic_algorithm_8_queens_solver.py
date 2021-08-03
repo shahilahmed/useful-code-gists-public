@@ -29,7 +29,7 @@ def fitness(individual):
 							break				
 	return result ## Fitness should be 0 ie No Queen is attacking to the Other Queen
 	
-def	str_individual(individual):
+def str_individual(individual):
 	board = [0 for square in range(64)]
 	for row,col in zip(individual,range(8)):
 		board[row * 8 + col] = 1	
