@@ -2,7 +2,7 @@ import random
 
 def abs(x):
 	return x if x >= 0 else -x
-
+'''
 ## bounds : 0 to 30
 ## solutions: [7,5,3,1],[12, 6, 2, 0],[1,9,1,2],[9,0,7,0],[0,3,0,6,],[10,10,0,0] etc etc
 ## f(x) = a + 2 * b + 3 * c + 4 * d
@@ -14,14 +14,25 @@ def func(individual):
 	result = result + 3 * individual[2]
 	result = result + 4 * individual[3]
 	return result
+'''
+## bounds : -50 to 50
+## f(x) = 25 * x ^ 2 - 20 * x + 1 * c
+## g(x) = abs(f(x))
+def func(individual):
+	a,b,c = 25,-20,1
+	result = 0
+	result = result + a * individual[0] ** 2
+	result = result + b * individual[1]
+	result = result + c * individual[2]
+	return result
 
 def fitness(individual):
-	return abs(30 - func(individual))
+	return abs(func(individual))
 	
-def get_chromosome(a = 0,b = 30):
+def get_chromosome(a = -50,b = 50):
 	return random.choice(range(a,b + 1))
 
-def get_individual(n = 4):
+def get_individual(n = 3):
 	return [get_chromosome() for index in range(n)]
 
 def generate_population(pouplations = 100):
